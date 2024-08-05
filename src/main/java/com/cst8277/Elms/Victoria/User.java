@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+
 @Data
 @NoArgsConstructor
 @Getter
@@ -16,9 +17,12 @@ public class User {
     @Setter
     private UUID userId;
     @Setter
+    @Getter
     private String username;
+    @Getter
     @Setter
     private String password;
+    @Getter
     @Setter
     private String token;
 
@@ -27,5 +31,10 @@ public class User {
         this.username = username;
         this.password = password;
         this.token = UUID.randomUUID().toString();
+    }
+
+
+    public UUID getuserId() {
+        return userId;
     }
 }

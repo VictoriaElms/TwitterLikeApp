@@ -1,16 +1,16 @@
 package com.cst8277.Elms.Victoria;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Setter;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
 import java.util.UUID;
 
+@Setter
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    @Autowired
     private UserRepository userRepository;
 
     @PostMapping("/login")
