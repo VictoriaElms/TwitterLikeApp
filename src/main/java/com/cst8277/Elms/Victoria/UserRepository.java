@@ -1,13 +1,17 @@
 package com.cst8277.Elms.Victoria;
 
+import org.springframework.data.repository.CrudRepository;
+import com.cst8277.Elms.Victoria.User;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class UserRepository {
-    private final Map<UUID, User> userStore = new HashMap<>();
+public interface UserRepository extends CrudRepository<User,Integer> {
 
-    public User findById(UUID userId){
+}
+   /* private final Map<Integer, User> userStore = new HashMap<>();
+
+    public User findById(Integer userId){
         return userStore.get(userId);
     }
 
@@ -17,11 +21,15 @@ public class UserRepository {
                 .findFirst().orElse(null);
     }
 
-    public Map<UUID, User> findAll() {
+    public Map<Integer, User> findAll() {
         return userStore;
     }
 
-    public void save(User user) {
+    public User save(User user) {
         userStore.put(user.getuserId(), user);
+        return user;
     }
-}
+
+    public void deleteById(Integer userId) {
+    }
+}*/

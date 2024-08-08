@@ -1,27 +1,31 @@
 package com.cst8277.Elms.Victoria;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
 
-import java.util.Map;
-import java.util.UUID;
+import java.sql.Date;
+
 
 @RestController
-@RequestMapping("/Messages")
+@RequestMapping("/messages")
 public class MessageController {
+    @Autowired
     private MessageRepository messageRepository;
 
-    @PostMapping
-    public Mono<Void> createMessage(@RequestBody Map<String, String> request){
-        String message = request.get("message");
-        UUID authorId = UUID.fromString(request.get("authorId"));
-        messageRepository.save(new Messages(message, authorId));
-        return Mono.empty();
+    @PostMapping(path ="/write")
+    public @ResponseBody String createMessage(@RequestParam Integer messageid, @RequestParam String content, @RequestParam Date createdate, @RequestParam Integer userid) {
+       Messages m = new Messages();
+       m.setMessageid(messageid);
+       m.setContent(content);
+       m.setCreatedate(createdate);
+       m.setUserid(userid);
+       messageRepository.save(m);
+       return "saved";
     }
 
-    @GetMapping
-    public Mono<Map<UUID, Messages>> getAllMessages(){
-        return Mono.just(messageRepository.findAll());
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<Messages> getMessages(){
+        return messageRepository.findAll();
     }
 
 }
