@@ -33,7 +33,7 @@ public class UserManagementService {
 
         userRepository.save(userId);
 
-        return token;
+        return null;
     }
     public User validateToken(String token){
         User user = userRepository.findByToken(token);
