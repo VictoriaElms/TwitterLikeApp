@@ -19,6 +19,8 @@ public class User {
     Integer userid;
     String name;
     String username;
+    @Getter
+    @Setter
     String password;
     String email;
     String role;
