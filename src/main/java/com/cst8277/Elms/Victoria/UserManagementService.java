@@ -19,11 +19,7 @@ import java.util.UUID;
 public class UserManagementService {
     @Autowired
     private UserRepository userRepository;
-/**
- * Creates and stores a new authentication token for a user
-   * @param user the user to create a token for
-   * @return the generated token
-    */
+
     public String createToken(User user){
         String token = UUID.randomUUID().toString();
         LocalDateTime expirationTime = LocalDateTime.now().plusMinutes(15);
@@ -32,7 +28,6 @@ public class UserManagementService {
         user.setTokenExpirationTime(expirationTime);
 
         userRepository.save(user);
-
 
         return token;
     }
